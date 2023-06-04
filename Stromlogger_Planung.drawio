@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-06-04T12:00:10.917Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0" etag="9eOqguBBTujsmWizw3Z4" version="21.3.7" type="github">
+<mxfile host="app.diagrams.net" modified="2023-06-04T12:07:39.948Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0" etag="eDfD5A8TupF_0zjeA6DC" version="21.3.7" type="github">
   <diagram name="Seite-1" id="XuaZ16H_RSh9hG0B_XFD">
     <mxGraphModel dx="1035" dy="1722" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -13,7 +13,7 @@
         <mxCell id="4wm6rS8gim3RebCfr74Y-1" value="&lt;div style=&quot;font-size: 24px;&quot; align=&quot;center&quot;&gt;&lt;h1&gt;&lt;font style=&quot;font-size: 24px;&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 24px;&quot;&gt;Stromlogger für die Zeltstadt&lt;/font&gt;&lt;/b&gt;&lt;/font&gt;&lt;/h1&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 24px;&quot; align=&quot;center&quot;&gt;&lt;font style=&quot;font-size: 24px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 24px;&quot; align=&quot;center&quot;&gt;&lt;font style=&quot;font-size: 24px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="40" y="10" width="480" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="4wm6rS8gim3RebCfr74Y-2" value="&lt;div align=&quot;left&quot;&gt;Vorgaben:&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;ul&gt;&lt;li&gt;Messung von Strömen bis 100A&lt;/li&gt;&lt;li&gt;Auswertungen&lt;/li&gt;&lt;ul&gt;&lt;li&gt;RMS (z.B. 10s, 1min, 15min)&lt;br&gt;&lt;/li&gt;&lt;li&gt;Spitzenstrom (&amp;gt; 2ms - 500Hz)&lt;br&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;keine Messung der Spannung&lt;/li&gt;&lt;li&gt;Immer Messung von 3 Phasen&lt;/li&gt;&lt;li&gt;Speichern der Daten zur späteren Auswertung (z.B. Grafana?)&lt;br&gt;&lt;/li&gt;&lt;li&gt;Keine Alarmierung/Warnung geplant&lt;br&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+        <mxCell id="4wm6rS8gim3RebCfr74Y-2" value="&lt;div align=&quot;left&quot;&gt;Vorgaben:&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;ul&gt;&lt;li&gt;Messung von Strömen bis 100A&lt;/li&gt;&lt;li&gt;Auswertungen&lt;/li&gt;&lt;ul&gt;&lt;li&gt;RMS (z.B. 10s, 1min, 15min)&lt;br&gt;&lt;/li&gt;&lt;li&gt;Spitzenstrom (&amp;gt; 2ms = &amp;lt; 500Hz)&lt;br&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;keine Messung der Spannung&lt;/li&gt;&lt;li&gt;Immer Messung von 3 Phasen&lt;/li&gt;&lt;li&gt;Speichern der Daten zur späteren Auswertung (z.B. Grafana?)&lt;br&gt;&lt;/li&gt;&lt;li&gt;Keine Alarmierung/Warnung geplant&lt;br&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
           <mxGeometry x="40" y="130" width="390" height="180" as="geometry" />
         </mxCell>
         <mxCell id="4wm6rS8gim3RebCfr74Y-3" value="&lt;h2&gt;Blockschaltbild&lt;/h2&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
@@ -135,6 +135,9 @@
             <mxPoint x="690" y="740" as="targetPoint" />
             <mxPoint as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="4wm6rS8gim3RebCfr74Y-42" value="&lt;div&gt;Prinzip:&lt;/div&gt;&lt;div&gt;Messung des Stroms für jeweils 3 Phasen über Stromtrafo und INA3221 (mit integrierten ADC). &lt;br&gt;&lt;/div&gt;&lt;div&gt;Pro drei Phasen ein ESP (es können auch 6 Phasen pro ESP gemessen werden, bei 3 wäre das ganze modular).&lt;/div&gt;&lt;div&gt;Die Werte der einzelnen Messeinheiten werden per WLAN (mit Mesh?) an die zentrale Log- und Auswerteeinheit gegeben.&lt;/div&gt;&lt;div&gt;An der Auswerteeinheit können die Daten bsp. über das Display eingesehen werden. Gelcihzeitig werden diese auf der integrierten SD-Karte abgelegt. Eine weitergabe der Daten per WLAN an einen PC oder Handy könnte auch erfolgen.&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="520" y="130" width="410" height="170" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
