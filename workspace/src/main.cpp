@@ -7,6 +7,8 @@
 #include <Arduino.h>
 #include "mesh_handler.h"
 
+Scheduler userScheduler;
+painlessMesh mesh;
 MeshHandler meshHandler;
 
 void setup() {

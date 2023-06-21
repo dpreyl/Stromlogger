@@ -6,11 +6,23 @@
  */
 #pragma once
 
-#include <TaskSchedulerDeclarations.h> // Include TaskScheduler declarations
 #include <Arduino.h>
 #include "painlessMesh.h"
-#include "callback_wrapper.h"
-#include <functional> // Include the functional library
+#include <TaskSchedulerDeclarations.h>
+
+#include <WiFi.h>
+#include <esp_wifi.h>
+
+#define MESH_PREFIX     "yourPrefix"
+#define MESH_PASSWORD   "yourPassword"
+#define MESH_PORT       5555
+
+#define JSON_DOC_SIZE 512
+#define STATION_DATA_INTERVAL 10000 // 10 seconds
+
+
+extern Scheduler userScheduler; // to control your personal task
+extern painlessMesh mesh;
 
 class MeshHandler {
 public:
@@ -19,22 +31,24 @@ public:
   void loop();
   void sendMessage(const String &msg);
 
-  painlessMesh mesh;
+  String collectRSSIandPeers();
+  void sendRSSIandPeers(String jsonData);
 
-  void sendRSSIandPeers();
+  void handleStationData(const String &data);
 private:
   static void receivedCallback(uint32_t from, String &msg);
   static void newConnectionCallback(uint32_t nodeId);
   static void changedConnectionCallback();
   static void nodeTimeAdjustedCallback(int32_t offset);
 
-  void handleStationData(const String &data);
+  static void setHandheldId(uint32_t handheldId);
+  static uint32_t handheldId;
 
-  void setHandheldId(uint32_t handheldId);
-  uint32_t handheldId = 0;
-
-  CallbackWrapper callbackWrapper;
+  void sendRSSIandPeersCallback();
+  void sendHandheldIdCallback();
 
   Task taskSendRSSIandPeers;
   Task taskSendHandheldId;
 };
+
+extern MeshHandler meshHandler;
