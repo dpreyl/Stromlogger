@@ -9,9 +9,11 @@
 #include <Arduino.h>
 #include "painlessMesh.h"
 #include <TaskSchedulerDeclarations.h>
+#include "OTAHandler.h"
 
 #include <WiFi.h>
 #include <esp_wifi.h>
+#include <TimeLib.h>
 
 #define MESH_PREFIX     "yourPrefix"
 #define MESH_PASSWORD   "yourPassword"
@@ -20,21 +22,31 @@
 #define JSON_DOC_SIZE 512
 #define STATION_DATA_INTERVAL 10000 // 10 seconds
 
-
 extern Scheduler userScheduler; // to control your personal task
 extern painlessMesh mesh;
+extern MyFS myFS;
 
 class MeshHandler {
 public:
   MeshHandler();
   void setup();
   void loop();
-  void sendMessage(const String &msg);
 
-  String collectRSSIandPeers();
-  void sendRSSIandPeers(String jsonData);
+  enum MessageTypes {
+      HANDHELDID,
+      TIMEBROADCAST,
+      MEASUREMENT
+    };
 
-  void handleStationData(const String &data);
+  void sendMessage(StaticJsonDocument<JSON_DOC_SIZE> jsonDoc, MessageTypes type, uint32_t reciverId=0);
+
+  StaticJsonDocument<JSON_DOC_SIZE> collectRSSIandPeers();
+  void sendRSSIandPeers(StaticJsonDocument<JSON_DOC_SIZE> jsonDoc);
+
+  void handleStationData(StaticJsonDocument<JSON_DOC_SIZE> jsonDoc);
+
+  OTAHandler otaHandler;
+
 private:
   static void receivedCallback(uint32_t from, String &msg);
   static void newConnectionCallback(uint32_t nodeId);
@@ -47,8 +59,11 @@ private:
   void sendRSSIandPeersCallback();
   void sendHandheldIdCallback();
 
+  static bool compareMessageType(ArduinoJson::JsonVariantConst jsonVariant, MeshHandler::MessageTypes messageType);
+
   Task taskSendRSSIandPeers;
   Task taskSendHandheldId;
+  Task taskOTACheck;
 };
 
 extern MeshHandler meshHandler;
