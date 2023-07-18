@@ -5,54 +5,17 @@
  *      Author: D-Laptop
  */
 #include <Arduino.h>
-#include <mesh.h>
+#include <INA3221.h>
 
-#ifdef DEVICE_TYPE_HANDHELD
-
-#define SDCARD_CS               (13)
-#define SDCARD_MOSI             (15)
-#define SDCARD_MISO             (2)
-#define SDCARD_SCLK             (14)
-
-#define BUTTON_1                (39)
-#define BUTTONS                 {39}
-
-#define BUTTON_COUNT            (1)
-
-#define LED_PIN                 (19)
-#define LED_ON                  (LOW)
-
-#define ADC_PIN                 (35)
-
-#define _HAS_ADC_DETECTED_
-#define _HAS_LED_
-#define _HAS_SDCARD_
-
-
-#include <disp.h>
-
-DispManagement dispMgmt;
-#endif
-
-MeshManagement meshMgmt;
-
-void setup() {
+void setup(void) {
 	Serial.begin(115200);
-	meshMgmt.init();
-
-#ifdef DEVICE_TYPE_HANDHELD
-	dispMgmt.init();
-	dispMgmt.dispHelloWorld();
-#endif
-
+	sensor.starter();
 }
 
 
 void loop() {
-	meshMgmt.loop();
-#ifdef DEVICE_TYPE_HANDHELD
-	delay(10000);
-	meshMgmt.dispFoundStations(dispMgmt);
-	dispMgmt.update();
-#endif
+	//Serial.println(sensor.readCurrent());
+	//Serial.println(ina3221.getCurrentCompensated(INA3221_CH3), 4);
+	vTaskDelay(1000/ portTICK_RATE_MS);
+	Serial.println("alive");
 }
