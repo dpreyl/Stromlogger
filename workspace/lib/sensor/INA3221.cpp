@@ -53,9 +53,9 @@ void INA3221::setup() {
 	  timerAttachInterrupt(timer, &INA3221::onTimer, true);  // Attach the interrupt function
 	  timerAlarmWrite(timer, 8332, true);  // Set the alarm value
 
-	  xTaskCreate(INA3221::timerTask, "timerTask", 2048, NULL, 1, NULL);
-	  xTaskCreate(INA3221::calcSensorTask, "calcSensorTask", 2048, NULL, 5, NULL);
-	  xTaskCreate(INA3221::calcTimerTask, "calcTimerTask", 2048, NULL, 8, NULL);
+	  xTaskCreate(INA3221::timerTask, "timerTask", 2048, NULL, 19, NULL);
+	  xTaskCreate(INA3221::calcSensorTask, "calcSensorTask", 2048, NULL, 10, NULL);
+	  xTaskCreate(INA3221::calcTimerTask, "calcTimerTask", 2048, NULL, 5, NULL);
 }
 
 void IRAM_ATTR INA3221::onTimer() {
@@ -68,7 +68,7 @@ void IRAM_ATTR INA3221::onTimer() {
 }
 
 void INA3221::starter() {
-	xTaskCreatePinnedToCore(INA3221::taskmanager, "Taskmanager", 4096, NULL, 10, NULL, 1);
+	xTaskCreatePinnedToCore(INA3221::taskmanager, "Taskmanager", 4096, NULL, 1, NULL, 1);
 }
 
 void INA3221::taskmanager(void * param){
@@ -191,6 +191,14 @@ void INA3221::calcTimerTask(void * param) {
 
 }
 
+INA3221::ResultData INA3221::receiveResultData() {
+	ResultData res = {0,0,0,0,0,0,0};
+	if( xQueueReceive( sensor._xQueueResultData, &( res ), 30000/ portTICK_RATE_MS )  != pdTRUE ){
+    	Serial.println("Schwerer Fehler, timeout in INA3221::calcSensorTask");
+    }
+	return res;
+}
+
 void INA3221::printResultData(INA3221::ResultData *resultData){
 	Serial.print("Ergebnisdaten:\t");
 	for (int channel = 0; channel < 3; ++channel) {
@@ -209,7 +217,7 @@ void INA3221::calcSensorTask(void *param) {
 	int32_t value;
 	uint32_t absValue;
 	while(true){
-	 if( xQueueReceive( sensor._xQueueSensorData, &( xSensorData ), 1000/ portTICK_RATE_MS ) ){
+	 if( xQueueReceive( sensor._xQueueSensorData, &( xSensorData ), 1000/ portTICK_RATE_MS ) == pdTRUE ){
 		 value = xSensorData.value;
 		 sqValue = sq(value);
 		 absValue = abs(value);

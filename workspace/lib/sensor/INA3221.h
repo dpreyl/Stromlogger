@@ -20,6 +20,15 @@ extern Beastdevices_INA3221 ina3221;
 class INA3221
 {
 public:
+	struct ResultSensorData{
+		   uint16_t rmsValue;
+		   uint16_t maxValue;
+	   };
+	   struct ResultData{
+		   ResultSensorData sensorData[3];
+		   uint32_t timestamp;
+	   };
+
    INA3221();
    void begin();
    int32_t readCurrent(uint8_t channel);
@@ -29,6 +38,7 @@ public:
 
    void printData(uint8_t channel);
    void printData();
+   ResultData receiveResultData();
 private:
    struct SensorData
    {
@@ -40,15 +50,6 @@ private:
 	   uint16_t count;
 	   long lastReset;
 	   uint16_t maxReading;
-   };
-
-   struct ResultSensorData{
-	   uint16_t rmsValue;
-	   uint16_t maxValue;
-   };
-   struct ResultData{
-	   ResultSensorData sensorData[3];
-	   uint32_t timestamp;
    };
 
    uint16_t maxReading[3];
