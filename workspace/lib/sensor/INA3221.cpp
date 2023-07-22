@@ -9,11 +9,12 @@
 Beastdevices_INA3221 ina3221(INA3221_ADDR41_VCC);
 INA3221 sensor;
 SemaphoreHandle_t INA3221::timerSemaphore = xSemaphoreCreateBinary();
+SemaphoreHandle_t INA3221::sensorDataMutex = xSemaphoreCreateMutex();
 uint32_t INA3221::skipCounter=0;
+uint32_t INA3221::sensorReadTimer=0;
 
 INA3221::INA3221()
 {
-   this->channel=INA3221_CH1;
 }
 
 void INA3221::begin()
@@ -39,20 +40,22 @@ void INA3221::begin()
    timerAlarmEnable(this->timer);  // Enable the timer
 }
 
-int32_t INA3221::readCurrent()
+int32_t INA3221::readCurrent(uint8_t channel)
 {
-   this->channel = static_cast<ina3221_ch_t>((this->channel + 1) % 3);
-   return ina3221.getShuntVoltage(this->channel);
+   return ina3221.getShuntVoltage(static_cast<ina3221_ch_t>(channel));
 
 }
 
 void INA3221::setup() {
-	//_xQueue = xQueueCreate(10, sizeof(SensorData));
+	  this->_xQueueSensorData = xQueueCreate(10, sizeof(SensorData));
+	  this->_xQueueResultData = xQueueCreate(30, sizeof(ResultData));
 	  this->timer = timerBegin(1, 2, true);  // Use timer 1, with a prescaler of 80
 	  timerAttachInterrupt(timer, &INA3221::onTimer, true);  // Attach the interrupt function
 	  timerAlarmWrite(timer, 8332, true);  // Set the alarm value
 
 	  xTaskCreate(INA3221::timerTask, "timerTask", 2048, NULL, 1, NULL);
+	  xTaskCreate(INA3221::calcSensorTask, "calcSensorTask", 2048, NULL, 5, NULL);
+	  xTaskCreate(INA3221::calcTimerTask, "calcTimerTask", 2048, NULL, 8, NULL);
 }
 
 void IRAM_ATTR INA3221::onTimer() {
@@ -79,27 +82,150 @@ void INA3221::taskmanager(void * param){
 void INA3221::timerTask(void * param) {
 	uint32_t readcount = 0;
 	long start = micros();
+	int32_t sensorValue;
+	struct SensorData xSensorData = {0, 0};
   while(true) {
-    if(xSemaphoreTake(INA3221::timerSemaphore, portMAX_DELAY) == pdTRUE) {
-    	sensor.readCurrent();
-      ++readcount;
+    if(xSemaphoreTake(INA3221::timerSemaphore, 1000/ portTICK_RATE_MS) == pdTRUE) {
+    	xSensorData.value = sensor.readCurrent(xSensorData.channel);
+    	if(xQueueSend(sensor._xQueueSensorData, &xSensorData, ( TickType_t ) 0 ) != pdTRUE){
+    		Serial.println("Fehler, sensorValueQueue ist voll");
+    	}
+    	xSensorData.channel = ((xSensorData.channel + 1) % 3);
+        ++readcount;
+    } else {
+    	Serial.println("Schwerer Fehler, timeout in INA3221::timerTask");
     }
     if(readcount >= 4800){
-    	Serial.print("4800 Samples gelesen in: ");
-    	Serial.print(micros() - start);
-    	Serial.print("us ");
-    	Serial.print("Uebersprungen: ");
-    	Serial.println(INA3221::skipCounter);
+    	long end = micros();
+    	INA3221::sensorReadTimer = end - start;
+    	start = end;
     	readcount = 0;
-    	start = micros();
-    	INA3221::skipCounter = 0;
+
+//    	Serial.print("4800 Samples gelesen in: ");
+//    	Serial.print(micros() - start);
+//    	Serial.print("us ");
+//    	Serial.print("Uebersprungen: ");
+//    	Serial.println(INA3221::skipCounter);
+//    	start = micros();
+//    	INA3221::skipCounter = 0;
     }
   }
 }
 
-void INA3221::readTask() {
+void INA3221::printData(uint8_t channel) {
+	Serial.print("Sensordaten von Sensor ");
+	Serial.print(channel);
+	Serial.print(": RMS ");
+	Serial.print(rmsValue[channel]);
+	Serial.print(" peak ");
+	Serial.println(maxReading[channel]);
+
 }
 
-void INA3221::calcTask() {
+void INA3221::printData() {
+	Serial.print("Sensordaten:\t");
+	for (int channel = 0; channel < 3; ++channel) {
+		Serial.print(rmsValue[channel]);
+		Serial.print("\t");
+		Serial.print(maxReading[channel]);
+		Serial.print("\t");
+	}
+	Serial.println("");
+
 }
 
+void INA3221::calcTimerTask(void * param) {
+	TickType_t xLastWakeTime = xTaskGetTickCount();
+	/* Bei 50Hz, 32 Samples pro Periode können maximal 10 Perioden in einem int summiert werden
+	 */
+	const TickType_t xFrequency = 200 / portTICK_RATE_MS;
+	uint8_t channel;
+	SumData sensorSumData;
+
+	SumData averageData[3] = {0,0,0,0,0,0,0,0,0,0,0,0};
+	long tsNext = micros() + 10000000L;
+	long now;
+
+	ResultData resultData;
+
+	while(true){
+		vTaskDelayUntil( &xLastWakeTime, xFrequency );
+		for (channel = 0; channel < 3; ++channel) {
+			if(xSemaphoreTake(INA3221::sensorDataMutex, 1000/ portTICK_RATE_MS) == pdTRUE){ // enter critical section
+				 sensorSumData = sensor.sensorSumData[channel];
+				 sensor.sensorSumData[channel].count=0;
+				 sensor.sensorSumData[channel].sum=0;
+				 sensor.sensorSumData[channel].maxReading=0;
+				 sensor.sensorSumData[channel].lastReset=micros();
+				 xSemaphoreGive(INA3221::sensorDataMutex); // exit critical section
+			} else {
+					Serial.println("Schwerer Fehler, timeout2 in INA3221::calcTimerTask");
+			}
+			sensor.rmsValue[channel] = sqrt(sensorSumData.sum / sensorSumData.count);
+			sensor.maxReading[channel] = sensorSumData.maxReading;
+
+			averageData[channel].sum += sensor.rmsValue[channel];
+			++averageData[channel].count;
+			if (averageData[channel].maxReading < sensor.maxReading[channel]){
+				averageData[channel].maxReading = sensor.maxReading[channel];
+			}
+		}
+		sensor.printData();
+		now = micros();
+		if(now - tsNext > 0){
+			for (int ii = 0; ii < 3; ++ii) {
+				resultData.sensorData[ii].maxValue = averageData[ii].maxReading;
+				resultData.sensorData[ii].rmsValue = averageData[ii].sum / averageData[ii].count;
+				averageData[ii].maxReading = 0;
+				averageData[ii].sum = 0;
+				averageData[ii].count = 0;
+			}
+			resultData.timestamp = (now / 1000);
+			if(xQueueSend(sensor._xQueueResultData, &resultData, ( TickType_t ) 0 ) != pdTRUE){
+			    Serial.println("Fehler, sensorResultQueue ist voll");
+			}
+			printResultData(&resultData);
+			tsNext += 10000000L; // alle 10 Sekunden
+		}
+	}
+
+}
+
+void INA3221::printResultData(INA3221::ResultData *resultData){
+	Serial.print("Ergebnisdaten:\t");
+	for (int channel = 0; channel < 3; ++channel) {
+		Serial.print(resultData->sensorData[channel].rmsValue);
+		Serial.print("\t");
+		Serial.print(resultData->sensorData[channel].maxValue);
+		Serial.print("\t");
+	}
+	Serial.print(" Timestamp: ");
+	Serial.println(resultData->timestamp);
+}
+
+void INA3221::calcSensorTask(void *param) {
+	struct SensorData xSensorData;
+	uint32_t sqValue;
+	int32_t value;
+	uint32_t absValue;
+	while(true){
+	 if( xQueueReceive( sensor._xQueueSensorData, &( xSensorData ), 1000/ portTICK_RATE_MS ) ){
+		 value = xSensorData.value;
+		 sqValue = sq(value);
+		 absValue = abs(value);
+		 if(xSemaphoreTake(INA3221::sensorDataMutex, 1000/ portTICK_RATE_MS) == pdTRUE){ // enter critical section
+			 if(absValue > sensor.sensorSumData[xSensorData.channel].maxReading){
+				 sensor.sensorSumData[xSensorData.channel].maxReading = absValue;
+			 }
+			 sensor.sensorSumData[xSensorData.channel].sum += sqValue;
+			 ++sensor.sensorSumData[xSensorData.channel].count;
+			 xSemaphoreGive(INA3221::sensorDataMutex); // exit critical section
+		 } else {
+		    	Serial.println("Schwerer Fehler, timeout2 in INA3221::calcSensorTask");
+		    }
+	 }
+	 else {
+	    	Serial.println("Schwerer Fehler, timeout in INA3221::calcSensorTask");
+	    }
+	}
+}

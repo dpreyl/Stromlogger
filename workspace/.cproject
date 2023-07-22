@@ -25,7 +25,9 @@
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.239157887" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/BeastDevices INA3221"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos"/>
@@ -218,8 +220,6 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/dio_qspi/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/cores/esp32"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/variants/esp32"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src"/>
@@ -278,7 +278,9 @@
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1096940598" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/BeastDevices INA3221"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos"/>
@@ -471,8 +473,6 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/dio_qspi/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/cores/esp32"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/variants/esp32"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src"/>
@@ -531,7 +531,9 @@
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.41298875" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/BeastDevices INA3221"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos"/>
@@ -724,8 +726,6 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/dio_qspi/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/cores/esp32"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/variants/esp32"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src"/>
@@ -810,7 +810,9 @@
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.794801023" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/BeastDevices INA3221"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos"/>
@@ -1003,8 +1005,6 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/dio_qspi/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/cores/esp32"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/variants/esp32"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src"/>
@@ -1063,7 +1063,9 @@
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.650084869" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/BeastDevices INA3221"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos"/>
@@ -1256,8 +1258,6 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/dio_qspi/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/cores/esp32"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/variants/esp32"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src"/>
@@ -1316,7 +1316,9 @@
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1246337321" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/BeastDevices INA3221"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos"/>
@@ -1509,8 +1511,6 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/dio_qspi/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/cores/esp32"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/variants/esp32"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src"/>

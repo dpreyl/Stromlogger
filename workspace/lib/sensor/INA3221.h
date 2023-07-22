@@ -22,31 +22,57 @@ class INA3221
 public:
    INA3221();
    void begin();
-   int32_t readCurrent();
+   int32_t readCurrent(uint8_t channel);
    void setup();
 
    void starter();
+
+   void printData(uint8_t channel);
+   void printData();
 private:
-   ina3221_ch_t channel;
    struct SensorData
    {
 	   int32_t value; // Value from INA3221 sensor
-	   ina3221_ch_t  channel; // Index of the sensor
+	   uint8_t  channel; // Index of the sensor
+   };
+   struct SumData{
+	   uint64_t sum;
+	   uint16_t count;
+	   long lastReset;
+	   uint16_t maxReading;
    };
 
-   void readTask();
-   void calcTask();
+   struct ResultSensorData{
+	   uint16_t rmsValue;
+	   uint16_t maxValue;
+   };
+   struct ResultData{
+	   ResultSensorData sensorData[3];
+	   uint32_t timestamp;
+   };
 
-   //QueueHandle_t _xQueue;
+   uint16_t maxReading[3];
+   uint16_t rmsValue[3];
+   SumData sensorSumData[3];
+
+   QueueHandle_t _xQueueSensorData;
+   QueueHandle_t _xQueueResultData;
 
    hw_timer_t * timer = NULL;
    static void IRAM_ATTR onTimer();
+
    static SemaphoreHandle_t timerSemaphore;
+   static SemaphoreHandle_t sensorDataMutex;
 
    static void timerTask(void * param);
-
    static void taskmanager(void * param);
+   static void calcSensorTask(void * param);
+   static void calcTimerTask(void * param);
+
+   static void printResultData(INA3221::ResultData *resultData);
+
    static uint32_t skipCounter;
+   static uint32_t sensorReadTimer;
 };
 
 extern INA3221 sensor;
