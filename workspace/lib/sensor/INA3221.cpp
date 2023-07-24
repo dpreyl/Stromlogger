@@ -81,7 +81,7 @@ void INA3221::taskmanager(void * param){
 
 void INA3221::timerTask(void * param) {
 	uint32_t readcount = 0;
-	long start = micros();
+	long start = millis();
 	int32_t sensorValue;
 	struct SensorData xSensorData = {0, 0};
   while(true) {
@@ -96,7 +96,7 @@ void INA3221::timerTask(void * param) {
     	Serial.println("Schwerer Fehler, timeout in INA3221::timerTask");
     }
     if(readcount >= 4800){
-    	long end = micros();
+    	long end = millis();
     	INA3221::sensorReadTimer = end - start;
     	start = end;
     	readcount = 0;
@@ -143,7 +143,7 @@ void INA3221::calcTimerTask(void * param) {
 	SumData sensorSumData;
 
 	SumData averageData[3] = {0,0,0,0,0,0,0,0,0,0,0,0};
-	long tsNext = micros() + 10000000L;
+	long tsNext = millis() + 10000L;
 	long now;
 
 	ResultData resultData;
@@ -156,7 +156,7 @@ void INA3221::calcTimerTask(void * param) {
 				 sensor.sensorSumData[channel].count=0;
 				 sensor.sensorSumData[channel].sum=0;
 				 sensor.sensorSumData[channel].maxReading=0;
-				 sensor.sensorSumData[channel].lastReset=micros();
+				 sensor.sensorSumData[channel].lastReset=millis();
 				 xSemaphoreGive(INA3221::sensorDataMutex); // exit critical section
 			} else {
 					Serial.println("Schwerer Fehler, timeout2 in INA3221::calcTimerTask");
@@ -170,8 +170,8 @@ void INA3221::calcTimerTask(void * param) {
 				averageData[channel].maxReading = sensor.maxReading[channel];
 			}
 		}
-		sensor.printData();
-		now = micros();
+		//sensor.printData();
+		now = millis();
 		if(now - tsNext > 0){
 			for (int ii = 0; ii < 3; ++ii) {
 				resultData.sensorData[ii].maxValue = averageData[ii].maxReading;
@@ -180,12 +180,12 @@ void INA3221::calcTimerTask(void * param) {
 				averageData[ii].sum = 0;
 				averageData[ii].count = 0;
 			}
-			resultData.timestamp = (now / 1000);
+			resultData.timestamp = (uint32_t)(now);
 			if(xQueueSend(sensor._xQueueResultData, &resultData, ( TickType_t ) 0 ) != pdTRUE){
 			    Serial.println("Fehler, sensorResultQueue ist voll");
 			}
 			printResultData(&resultData);
-			tsNext += 10000000L; // alle 10 Sekunden
+			tsNext += 10000L; // alle 10 Sekunden
 		}
 	}
 

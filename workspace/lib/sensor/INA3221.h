@@ -39,6 +39,8 @@ public:
    void printData(uint8_t channel);
    void printData();
    ResultData receiveResultData();
+
+   static void printResultData(INA3221::ResultData *resultData);
 private:
    struct SensorData
    {
@@ -69,8 +71,6 @@ private:
    static void taskmanager(void * param);
    static void calcSensorTask(void * param);
    static void calcTimerTask(void * param);
-
-   static void printResultData(INA3221::ResultData *resultData);
 
    static uint32_t skipCounter;
    static uint32_t sensorReadTimer;

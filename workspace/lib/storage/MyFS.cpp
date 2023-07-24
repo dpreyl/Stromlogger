@@ -7,6 +7,7 @@
 #include <MyFS.h>
 
 MyFS myFS;
+SemaphoreHandle_t MyFS::fsMutex = xSemaphoreCreateMutex();
 
 MyFS::MyFS() {
 }
@@ -19,6 +20,8 @@ bool MyFS::begin(bool formatOnFailure) {
     Serial.println("LittleFS initialized");
 return true;
 }
+
+
 
 void MyFS::listFiles(const char* dir) {
 	File root = open(dir);
@@ -39,4 +42,19 @@ File MyFS::open(const char* path, const char* mode, const bool create){
 	return root;
 }
 
+bool MyFS::remove(const char* path){
+	return LittleFS.remove(path);
+}
+
+void MyFS::mkdir(const char* path){
+	LittleFS.mkdir(path);
+}
+
+BaseType_t MyFS::takeSemaphore(unsigned int timeout) {
+	return xSemaphoreTake(MyFS::fsMutex, timeout / portTICK_RATE_MS);
+}
+
+void MyFS::giveSemaphore() {
+	xSemaphoreGive(MyFS::fsMutex);
+}
 // Implement more functions here as needed
