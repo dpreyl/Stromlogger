@@ -17,6 +17,7 @@ public:
     bool remove(const char* path);
     static BaseType_t takeSemaphore(unsigned int timeout);
     static void giveSemaphore();
+    bool exists(const char* path);
 private:
     static SemaphoreHandle_t fsMutex;
 };

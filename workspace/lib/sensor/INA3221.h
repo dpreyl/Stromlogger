@@ -39,6 +39,7 @@ public:
    void printData(uint8_t channel);
    void printData();
    ResultData receiveResultData();
+   ResultData getCurrentValues();
 
    static void printResultData(INA3221::ResultData *resultData);
 private:

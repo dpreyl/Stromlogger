@@ -42,6 +42,10 @@ File MyFS::open(const char* path, const char* mode, const bool create){
 	return root;
 }
 
+bool MyFS::exists(const char* path){
+	return LittleFS.exists(path);
+}
+
 bool MyFS::remove(const char* path){
 	return LittleFS.remove(path);
 }

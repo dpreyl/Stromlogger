@@ -26,7 +26,7 @@ void MyDatalogger::setup() {
 	}
 	Serial.print("Sequenz Nummer: ");
 	Serial.println(this->seqNo);
-	xTaskCreate(MyDatalogger::dataLoggerTask, "dataLoggerTask", 8192, NULL, 10, NULL);
+	xTaskCreate(MyDatalogger::dataLoggerTask, "dataLoggerTask", 8192, NULL, 18, NULL);
 }
 
 uint32_t MyDatalogger::findSequenceNo() {
@@ -102,6 +102,48 @@ void MyDatalogger::printDataCollection(DataCollection *dataCollection) {
 	}
 }
 
+MyDatalogger::DataCollection MyDatalogger::getSequence(uint32_t seqNo) {
+	DataCollection readDataCollection = {};
+	Serial.println("getSequence 1");
+	if(myFS.takeSemaphore(fsMutexTimeout) != pdTRUE){
+		Serial.println("Timeout beim warten aufs FS print");
+		return {};
+	} else {
+		Serial.println("getSequence 2");
+		uint32_t fileindex = (seqNo)/60;
+		String path = "/data/"+String(fileindex)+".zsl";
+		if(!myFS.exists(path.c_str())){
+			Serial.print("File not found: ");
+			Serial.println(path);
+			myFS.giveSemaphore(); // exit critical section
+			return {};
+		}
+		Serial.print("File found: ");
+		Serial.println(path);
+		File file = myFS.open(path.c_str());
+		Serial.println("getSequence 3");
+		if(!file){
+			myFS.giveSemaphore(); // exit critical section
+			return {};
+		}
+		ssize_t res = file.read((byte *)&readDataCollection, sizeof(DataCollection));
+		Serial.println("getSequence 4");
+		while(res > 0){
+			if(readDataCollection.seqNo == seqNo){
+				break;
+			}
+			res = file.read((byte *)&readDataCollection, sizeof(DataCollection));
+			}
+		Serial.println("getSequence 5");
+		file.close();
+		Serial.println("getSequence 6");
+		myFS.giveSemaphore(); // exit critical section
+		Serial.println("getSequence 7");
+	}
+	Serial.println("getSequence 8");
+	return readDataCollection;
+	}
+
 void MyDatalogger::writeDataCollection(DataCollection *dataCollection) {
 	uint32_t fileindex = (dataCollection->seqNo)/60;
 	String path = "/data/"+String(fileindex)+".zsl";
@@ -127,4 +169,26 @@ void MyDatalogger::writeDataCollection(DataCollection *dataCollection) {
 		file.close();
 		myFS.giveSemaphore(); // exit critical section
 	}
+}
+
+uint32_t MyDatalogger::getCurrentSequenceNo() {
+	return seqNo;
+}
+
+bool MyDatalogger::deleteFile(uint32_t fileNo){
+	uint32_t actFileindex = myDatalogger.getCurrentSequenceNo()/60;
+	if(fileNo >= actFileindex){
+		return false;
+	}
+	bool ret=false;
+	String path = "/data/"+String(fileNo)+".zsl";
+	Serial.print("Loesche Datei: ");
+	Serial.println(path);
+	if(myFS.takeSemaphore(fsMutexTimeout) != pdTRUE){
+			Serial.println("Timeout beim warten aufs FS delete");
+	} else {
+		ret = myFS.remove(path.c_str());
+		myFS.giveSemaphore(); // exit critical section
+	}
+	return ret;
 }

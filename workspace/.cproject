@@ -25,7 +25,14 @@
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.239157887" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/storage"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/ESPAsyncWebServer-esphome/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncElegantOTA/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FS/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncTCP-esphome/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncTCP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/BeastDevices INA3221"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include"/>
@@ -220,6 +227,9 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/dio_qspi/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/cores/esp32"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/variants/esp32"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Update/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/interface"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src"/>
@@ -230,13 +240,11 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ESPmDNS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Ethernet/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FFat/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPClient/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdate/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdateServer/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Insights/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/NetBIOS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Preferences/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/RainMaker/src"/>
@@ -247,15 +255,14 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/SimpleBLE/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Ticker/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/USB/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Update/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.922107295" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=60107"/>
 									<listOptionValue builtIn="false" value="ARDUINO_ESP32_DEV"/>
+									<listOptionValue builtIn="false" value="ESP_WIFI_TASK_PINNED_TO_CORE_0"/>
 									<listOptionValue builtIn="false" value="HAVE_CONFIG_H"/>
 									<listOptionValue builtIn="false" value="MBEDTLS_CONFIG_FILE=&quot;mbedtls/esp_config.h&quot;"/>
 									<listOptionValue builtIn="false" value="UNITY_INCLUDE_CONFIG_H"/>
@@ -278,7 +285,14 @@
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1096940598" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/storage"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/ESPAsyncWebServer-esphome/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncElegantOTA/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FS/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncTCP-esphome/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncTCP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/BeastDevices INA3221"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include"/>
@@ -473,6 +487,9 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/dio_qspi/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/cores/esp32"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/variants/esp32"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Update/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/interface"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src"/>
@@ -483,13 +500,11 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ESPmDNS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Ethernet/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FFat/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPClient/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdate/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdateServer/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Insights/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/NetBIOS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Preferences/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/RainMaker/src"/>
@@ -500,15 +515,14 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/SimpleBLE/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Ticker/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/USB/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Update/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1198905600" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=60107"/>
 									<listOptionValue builtIn="false" value="ARDUINO_ESP32_DEV"/>
+									<listOptionValue builtIn="false" value="ESP_WIFI_TASK_PINNED_TO_CORE_0"/>
 									<listOptionValue builtIn="false" value="HAVE_CONFIG_H"/>
 									<listOptionValue builtIn="false" value="MBEDTLS_CONFIG_FILE=&quot;mbedtls/esp_config.h&quot;"/>
 									<listOptionValue builtIn="false" value="UNITY_INCLUDE_CONFIG_H"/>
@@ -531,7 +545,14 @@
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.41298875" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/storage"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/ESPAsyncWebServer-esphome/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncElegantOTA/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FS/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncTCP-esphome/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncTCP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/BeastDevices INA3221"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include"/>
@@ -726,6 +747,9 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/dio_qspi/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/cores/esp32"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/variants/esp32"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Update/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/interface"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src"/>
@@ -736,13 +760,11 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ESPmDNS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Ethernet/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FFat/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPClient/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdate/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdateServer/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Insights/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/NetBIOS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Preferences/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/RainMaker/src"/>
@@ -753,15 +775,14 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/SimpleBLE/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Ticker/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/USB/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Update/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.884639970" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=60107"/>
 									<listOptionValue builtIn="false" value="ARDUINO_ESP32_DEV"/>
+									<listOptionValue builtIn="false" value="ESP_WIFI_TASK_PINNED_TO_CORE_0"/>
 									<listOptionValue builtIn="false" value="HAVE_CONFIG_H"/>
 									<listOptionValue builtIn="false" value="MBEDTLS_CONFIG_FILE=&quot;mbedtls/esp_config.h&quot;"/>
 									<listOptionValue builtIn="false" value="UNITY_INCLUDE_CONFIG_H"/>
@@ -810,7 +831,14 @@
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.794801023" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/storage"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/ESPAsyncWebServer-esphome/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncElegantOTA/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FS/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncTCP-esphome/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncTCP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/BeastDevices INA3221"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include"/>
@@ -1005,6 +1033,9 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/dio_qspi/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/cores/esp32"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/variants/esp32"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Update/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/interface"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src"/>
@@ -1015,13 +1046,11 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ESPmDNS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Ethernet/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FFat/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPClient/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdate/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdateServer/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Insights/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/NetBIOS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Preferences/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/RainMaker/src"/>
@@ -1032,15 +1061,14 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/SimpleBLE/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Ticker/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/USB/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Update/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1743427839" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=60107"/>
 									<listOptionValue builtIn="false" value="ARDUINO_ESP32_DEV"/>
+									<listOptionValue builtIn="false" value="ESP_WIFI_TASK_PINNED_TO_CORE_0"/>
 									<listOptionValue builtIn="false" value="HAVE_CONFIG_H"/>
 									<listOptionValue builtIn="false" value="MBEDTLS_CONFIG_FILE=&quot;mbedtls/esp_config.h&quot;"/>
 									<listOptionValue builtIn="false" value="UNITY_INCLUDE_CONFIG_H"/>
@@ -1063,7 +1091,14 @@
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.650084869" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/storage"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/ESPAsyncWebServer-esphome/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncElegantOTA/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FS/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncTCP-esphome/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncTCP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/BeastDevices INA3221"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include"/>
@@ -1258,6 +1293,9 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/dio_qspi/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/cores/esp32"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/variants/esp32"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Update/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/interface"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src"/>
@@ -1268,13 +1306,11 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ESPmDNS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Ethernet/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FFat/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPClient/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdate/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdateServer/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Insights/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/NetBIOS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Preferences/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/RainMaker/src"/>
@@ -1285,15 +1321,14 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/SimpleBLE/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Ticker/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/USB/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Update/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.2055633423" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=60107"/>
 									<listOptionValue builtIn="false" value="ARDUINO_ESP32_DEV"/>
+									<listOptionValue builtIn="false" value="ESP_WIFI_TASK_PINNED_TO_CORE_0"/>
 									<listOptionValue builtIn="false" value="HAVE_CONFIG_H"/>
 									<listOptionValue builtIn="false" value="MBEDTLS_CONFIG_FILE=&quot;mbedtls/esp_config.h&quot;"/>
 									<listOptionValue builtIn="false" value="UNITY_INCLUDE_CONFIG_H"/>
@@ -1316,7 +1351,14 @@
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1246337321" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/storage"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/sensor"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/ESPAsyncWebServer-esphome/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncElegantOTA/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FS/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncTCP-esphome/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/AsyncTCP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/.pio/libdeps/station/BeastDevices INA3221"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include"/>
@@ -1511,6 +1553,9 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/dio_qspi/include"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/cores/esp32"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/variants/esp32"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Update/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Documents/Projekte/KIA/Stromlogger/workspace/lib/interface"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src"/>
@@ -1521,13 +1566,11 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/ESPmDNS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Ethernet/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FFat/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/FS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPClient/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdate/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdateServer/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Insights/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/NetBIOS/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Preferences/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/RainMaker/src"/>
@@ -1538,15 +1581,14 @@
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/SimpleBLE/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Ticker/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/USB/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/Update/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.2122043341" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=60107"/>
 									<listOptionValue builtIn="false" value="ARDUINO_ESP32_DEV"/>
+									<listOptionValue builtIn="false" value="ESP_WIFI_TASK_PINNED_TO_CORE_0"/>
 									<listOptionValue builtIn="false" value="HAVE_CONFIG_H"/>
 									<listOptionValue builtIn="false" value="MBEDTLS_CONFIG_FILE=&quot;mbedtls/esp_config.h&quot;"/>
 									<listOptionValue builtIn="false" value="UNITY_INCLUDE_CONFIG_H"/>

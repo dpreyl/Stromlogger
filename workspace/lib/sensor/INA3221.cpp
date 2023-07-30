@@ -20,6 +20,7 @@ INA3221::INA3221()
 void INA3221::begin()
 {
 	Wire.begin(-1, -1, (uint32_t)500000);
+	Wire.setTimeOut(10);
    ina3221.begin();
    ina3221.reset();
 
@@ -28,10 +29,10 @@ void INA3221::begin()
 
    ina3221.setAveragingMode(INA3221_REG_CONF_AVG_1);
    ina3221.setBusMeasDisable();
-   //ina3221.setCritAlertLatchDisable();
-   //ina3221.setCurrentSumDisable(INA3221_CH1);
-   //ina3221.setCurrentSumDisable(INA3221_CH2);
-   //ina3221.setCurrentSumDisable(INA3221_CH3);
+   ina3221.setCritAlertLatchDisable();
+   ina3221.setCurrentSumDisable(INA3221_CH1);
+   ina3221.setCurrentSumDisable(INA3221_CH2);
+   ina3221.setCurrentSumDisable(INA3221_CH3);
    ina3221.setFilterRes(10, 10, 10);
    // Bei 50Hz, 3Phasen, 32Samples/Amplitude => 208,3us pro Sample
    ina3221.setShuntConversionTime(INA3221_REG_CONF_CT_204US);
@@ -47,15 +48,15 @@ int32_t INA3221::readCurrent(uint8_t channel)
 }
 
 void INA3221::setup() {
-	  this->_xQueueSensorData = xQueueCreate(10, sizeof(SensorData));
+	  this->_xQueueSensorData = xQueueCreate(100, sizeof(SensorData));
 	  this->_xQueueResultData = xQueueCreate(30, sizeof(ResultData));
 	  this->timer = timerBegin(1, 2, true);  // Use timer 1, with a prescaler of 80
 	  timerAttachInterrupt(timer, &INA3221::onTimer, true);  // Attach the interrupt function
 	  timerAlarmWrite(timer, 8332, true);  // Set the alarm value
 
-	  xTaskCreate(INA3221::timerTask, "timerTask", 2048, NULL, 19, NULL);
-	  xTaskCreate(INA3221::calcSensorTask, "calcSensorTask", 2048, NULL, 10, NULL);
-	  xTaskCreate(INA3221::calcTimerTask, "calcTimerTask", 2048, NULL, 5, NULL);
+	  xTaskCreate(INA3221::timerTask, "timerTask", 2048, NULL, 40, NULL);
+	  xTaskCreate(INA3221::calcSensorTask, "calcSensorTask", 2048, NULL, 35, NULL);
+	  xTaskCreate(INA3221::calcTimerTask, "calcTimerTask", 2048, NULL, 32, NULL);
 }
 
 void IRAM_ATTR INA3221::onTimer() {
@@ -68,7 +69,7 @@ void IRAM_ATTR INA3221::onTimer() {
 }
 
 void INA3221::starter() {
-	xTaskCreatePinnedToCore(INA3221::taskmanager, "Taskmanager", 4096, NULL, 1, NULL, 1);
+	xTaskCreatePinnedToCore(INA3221::taskmanager, "Taskmanager", 4096, NULL, 31, NULL, 1);
 }
 
 void INA3221::taskmanager(void * param){
@@ -134,6 +135,16 @@ void INA3221::printData() {
 
 }
 
+INA3221::ResultData INA3221::getCurrentValues() {
+	ResultData ret;
+	for (int ii = 0; ii < 3; ++ii) {
+		ret.sensorData[ii].rmsValue = rmsValue[ii];
+		ret.sensorData[ii].maxValue = maxReading[ii];
+	}
+	ret.timestamp = (uint32_t)millis();
+	return ret;
+}
+
 void INA3221::calcTimerTask(void * param) {
 	TickType_t xLastWakeTime = xTaskGetTickCount();
 	/* Bei 50Hz, 32 Samples pro Periode können maximal 10 Perioden in einem int summiert werden
@@ -161,21 +172,31 @@ void INA3221::calcTimerTask(void * param) {
 			} else {
 					Serial.println("Schwerer Fehler, timeout2 in INA3221::calcTimerTask");
 			}
-			sensor.rmsValue[channel] = sqrt(sensorSumData.sum / sensorSumData.count);
-			sensor.maxReading[channel] = sensorSumData.maxReading;
+			if(sensorSumData.count < 50){
+				Serial.println("Fehler, zu wenig Sensordaten fuer RMS");
+			} else {
+				sensor.rmsValue[channel] = sqrt(sensorSumData.sum / sensorSumData.count);
+				sensor.maxReading[channel] = sensorSumData.maxReading;
 
-			averageData[channel].sum += sensor.rmsValue[channel];
-			++averageData[channel].count;
-			if (averageData[channel].maxReading < sensor.maxReading[channel]){
-				averageData[channel].maxReading = sensor.maxReading[channel];
+				averageData[channel].sum += sensor.rmsValue[channel];
+				++averageData[channel].count;
+				if (averageData[channel].maxReading < sensor.maxReading[channel]){
+					averageData[channel].maxReading = sensor.maxReading[channel];
+				}
 			}
 		}
 		//sensor.printData();
 		now = millis();
 		if(now - tsNext > 0){
 			for (int ii = 0; ii < 3; ++ii) {
-				resultData.sensorData[ii].maxValue = averageData[ii].maxReading;
-				resultData.sensorData[ii].rmsValue = averageData[ii].sum / averageData[ii].count;
+				if(averageData[ii].count < 50){
+					Serial.println("Fehler, zu wenig Sensordaten fuer average");
+					resultData.sensorData[ii].maxValue = 0;
+					resultData.sensorData[ii].rmsValue = 0;
+				} else {
+					resultData.sensorData[ii].maxValue = averageData[ii].maxReading;
+					resultData.sensorData[ii].rmsValue = averageData[ii].sum / averageData[ii].count;
+				}
 				averageData[ii].maxReading = 0;
 				averageData[ii].sum = 0;
 				averageData[ii].count = 0;

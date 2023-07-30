@@ -15,14 +15,17 @@ class MyDatalogger{
 public:
 	void setup();
 	static void printCollectedData();
+	struct DataCollection{
+			INA3221::ResultData sensorData[6];
+			uint32_t seqNo;
+			};
+	static DataCollection getSequence(uint32_t seqNo);
+	uint32_t getCurrentSequenceNo();
+	static bool deleteFile(uint32_t fileNo);
 private:
 	uint32_t findSequenceNo();
 	static void dataLoggerTask(void * param);
 	uint32_t seqNo=0;
-	struct DataCollection{
-		INA3221::ResultData sensorData[6];
-		uint32_t seqNo;
-		};
 	static void printDataCollection(DataCollection *dataCollection);
 	static void writeDataCollection(DataCollection *dataCollection);
 	DataCollection tmpDataCollection;
