@@ -34,7 +34,9 @@ private:
 	const char* password = "geheimnis";
 
 	void setupWebpages();
+	void addStaticFiles();
 	static void sendSensorValue(AsyncWebServerRequest *request);
+	static void sendStatusValue(AsyncWebServerRequest *request);
 	static void sendSequence(AsyncWebServerRequest *request);
 	static void deleteFile(AsyncWebServerRequest *request);
 	static void sendCSVData(AsyncWebServerRequest *request);

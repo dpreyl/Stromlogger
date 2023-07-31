@@ -293,7 +293,8 @@ void FSBrowser::_setup() {
       DBG_OUTPUT_PORT.printf("\n");
   }
 
-  FSBrowser::initFs();
+  // Nicht mehr benoetigt
+  //FSBrowser::initFs();
 
 
   //SERVER INIT

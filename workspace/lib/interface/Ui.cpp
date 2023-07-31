@@ -36,30 +36,96 @@ void Ui::setup() {
 
 void Ui::setupWebpages() {
 	server.on("/sensor", HTTP_GET, Ui::sendSensorValue);
+	server.on("/status", HTTP_GET, Ui::sendStatusValue);
 	server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-	  String html = "<!DOCTYPE html>"
-	                "<html>"
-	                "<body>"
-	                "<p id='sensorValue'></p>"
-	                "<script>"
-	                "setInterval(function(){"
-	                "  fetch('/sensor').then(response => response.text()).then(data => {"
-	                "    document.getElementById('sensorValue').innerHTML = data;"
-	                "  });"
-	                "}, 1000);"
-	                "</script>"
-	                "</body>"
-	                "</html>";
-	  request->send(200, "text/html", html);
+//	  String html = "<!DOCTYPE html>"
+//	                "<html>"
+//	                "<body>"
+//	                "<p id='sensorValue'></p>"
+//	                "<script>"
+//	                "setInterval(function(){"
+//	                "  fetch('/sensor').then(response => response.text()).then(data => {"
+//	                "    document.getElementById('sensorValue').innerHTML = data;"
+//	                "  });"
+//	                "}, 1000);"
+//	                "</script>"
+//	                "</body>"
+//	                "</html>";
+//	  request->send(200, "text/html", html);
+		request->redirect("index.htm");
 	});
 	server.on("/getSequence", HTTP_GET, Ui::sendSequence);
 	server.on("/getCurrentSequenceNo", HTTP_GET, [](AsyncWebServerRequest *request){
 		  uint32_t seqNo = myDatalogger.getCurrentSequenceNo();
 		  request->send(200, "text/html", String(seqNo));
 		});
-	server.on("/deleteFile", HTTP_GET, Ui::deleteFile);
-	server.on("/getCSVData", HTTP_GET, Ui::sendCSVData);
-	server.serveStatic("/data", LittleFS, "/data/");
+	//server.on("/deleteFile", HTTP_GET, Ui::deleteFile);
+	//server.on("/getCSVData", HTTP_GET, Ui::sendCSVData);
+	//server.serveStatic("/data", LittleFS, "/data/");
+
+	addStaticFiles();
+
+	server.onNotFound([](AsyncWebServerRequest *request) {
+		Serial.println("Async not found: "+request->url());
+		if (request->method() == HTTP_OPTIONS) {
+	    request->send(200);
+	  } else {
+	    request->send(404);
+	  }
+	});
+}
+
+void Ui::addStaticFiles(){
+	{
+	//edit.htm
+	extern const uint8_t _binary_data_edit_htm_gz_start[] asm("_binary_data_edit_htm_gz_start");
+	extern const uint8_t _binary_data_edit_htm_gz_end[] asm("_binary_data_edit_htm_gz_end");
+	server.on("/edit.htm", HTTP_GET, [](AsyncWebServerRequest *request){
+		AsyncWebServerResponse *response = request->beginResponse_P(200, "text/html", _binary_data_edit_htm_gz_start, _binary_data_edit_htm_gz_end - _binary_data_edit_htm_gz_start);
+		response->addHeader("Content-Encoding", "gzip");
+		request->send(response);
+		});
+	}
+	{
+	//favicon.ico
+	extern const uint8_t _binary_data_favicon_ico_gz_start[] asm("_binary_data_favicon_ico_gz_start");
+	extern const uint8_t _binary_data_favicon_ico_gz_end[] asm("_binary_data_favicon_ico_gz_end");
+	server.on("/favicon.ico", HTTP_GET, [](AsyncWebServerRequest *request){
+		AsyncWebServerResponse *response = request->beginResponse_P(200, "image/x-icon", _binary_data_favicon_ico_gz_start, _binary_data_favicon_ico_gz_end - _binary_data_favicon_ico_gz_start);
+		response->addHeader("Content-Encoding", "gzip");
+		request->send(response);
+		});
+	}
+	{
+	//graphs.js
+	extern const uint8_t _binary_data_graphs_js_gz_start[] asm("_binary_data_graphs_js_gz_start");
+	extern const uint8_t _binary_data_graphs_js_gz_end[] asm("_binary_data_graphs_js_gz_end");
+	server.on("/graphs.js", HTTP_GET, [](AsyncWebServerRequest *request){
+		AsyncWebServerResponse *response = request->beginResponse_P(200, "application/javascript", _binary_data_graphs_js_gz_start, _binary_data_graphs_js_gz_end - _binary_data_graphs_js_gz_start);
+		response->addHeader("Content-Encoding", "gzip");
+		request->send(response);
+		});
+	}
+	{
+	//ace.js
+	extern const uint8_t _binary_data_ace_js_gz_start[] asm("_binary_data_ace_js_gz_start");
+	extern const uint8_t _binary_data_ace_js_gz_end[] asm("_binary_data_ace_js_gz_end");
+	server.on("/ace.js", HTTP_GET, [](AsyncWebServerRequest *request){
+		AsyncWebServerResponse *response = request->beginResponse_P(200, "application/javascript", _binary_data_ace_js_gz_start, _binary_data_ace_js_gz_end - _binary_data_ace_js_gz_start);
+		response->addHeader("Content-Encoding", "gzip");
+		request->send(response);
+		});
+	}
+	{
+	//index.htm
+	extern const uint8_t _binary_data_index_htm_gz_start[] asm("_binary_data_index_htm_gz_start");
+	extern const uint8_t _binary_data_index_htm_gz_end[] asm("_binary_data_index_htm_gz_end");
+	server.on("/index.htm", HTTP_GET, [](AsyncWebServerRequest *request){
+		AsyncWebServerResponse *response = request->beginResponse_P(200, "text/html", _binary_data_index_htm_gz_start, _binary_data_index_htm_gz_end - _binary_data_index_htm_gz_start);
+		response->addHeader("Content-Encoding", "gzip");
+		request->send(response);
+		});
+	}
 }
 
 void Ui::sendCSVData(AsyncWebServerRequest *request){
@@ -117,6 +183,18 @@ void Ui::sendSensorValue(AsyncWebServerRequest *request) {
 	StaticJsonDocument<192> jsonBuffer;
 
 	Ui::parseSensorResultData(jsonBuffer.to<JsonObject>(), &data);
+
+	AsyncResponseStream *response = request->beginResponseStream("application/json");
+	serializeJson(jsonBuffer, *response);
+
+	request->send(response);
+}
+
+void Ui::sendStatusValue(AsyncWebServerRequest *request) {
+	StaticJsonDocument<192> jsonBuffer;
+
+	jsonBuffer["heap"] = ESP.getFreeHeap();
+	jsonBuffer["freeSpace"] = myFS.freeSpace();
 
 	AsyncResponseStream *response = request->beginResponseStream("application/json");
 	serializeJson(jsonBuffer, *response);

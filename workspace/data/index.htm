@@ -19,30 +19,51 @@
 <html>
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <title>ESP Monitor</title>
+  <title>ZS Stromlogger</title>
   <script type="text/javascript" src="graphs.js"></script>
   <script type="text/javascript">
-    var heap,temp,digi;
+    var heap,L1rms,L2rms,L3rms,freeSpace,L1max,L2max,L3max;
     var reloadPeriod = 1000;
+    var factorValue = 100;
     var running = false;
     
     function loadValues(){
       if(!running) return;
+      loadStatus();
       var xh = new XMLHttpRequest();
       xh.onreadystatechange = function(){
         if (xh.readyState == 4){
           if(xh.status == 200) {
             var res = JSON.parse(xh.responseText);
-            heap.add(res.heap);
-            temp.add(res.analog);
-            digi.add(res.gpio);
+            L1rms.add(res.sensorData[0].rms/factorValue);
+            L2rms.add(res.sensorData[1].rms/factorValue);
+            L3rms.add(res.sensorData[2].rms/factorValue);
+            L1max.add(res.sensorData[0].max/factorValue);
+            L2max.add(res.sensorData[1].max/factorValue);
+            L3max.add(res.sensorData[2].max/factorValue);
             if(running) setTimeout(loadValues, reloadPeriod);
           } else running = false;
         }
       };
-      xh.open("GET", "/all", true);
+      xh.open("GET", "/sensor", true);
       xh.send(null);
     };
+    
+    function loadStatus(){
+        if(!running) return;
+        var xh = new XMLHttpRequest();
+        xh.onreadystatechange = function(){
+          if (xh.readyState == 4){
+            if(xh.status == 200) {
+              var res = JSON.parse(xh.responseText);
+              heap.add(res.heap);
+              freeSpace.add(res.freeSpace);
+            }
+          }
+        };
+        xh.open("GET", "/status", true);
+        xh.send(null);
+      };
     
     function run(){
       if(!running){
@@ -58,6 +79,13 @@
         var value = parseInt(e.target.value);
         reloadPeriod = (value > 0)?value:0;
         e.target.value = reloadPeriod;
+      }
+      var factor = document.getElementById("factor");
+      factor.value = factorValue;
+      factor.onchange = function(e){
+        var value = parseInt(e.target.value);
+        factorValue = (value > 0)?value:0;
+        e.target.value = factorValue;
       }
       var stopButton = document.getElementById("stop-button");
       stopButton.onclick = function(e){
@@ -76,9 +104,17 @@
       //}
       //temp = createGraph(document.getElementById("analog"), "Temperature", 100, 128, 10, 40, false, "cyan", calcThermistor);
       
-      temp = createGraph(document.getElementById("analog"), "Analog Input", 100, 128, 0, 1023, false, "cyan");
-      heap = createGraph(document.getElementById("heap"), "Current Heap", 100, 125, 0, 30000, true, "orange");
-      digi = createDigiGraph(document.getElementById("digital"), "GPIO", 100, 146, [0, 4, 5, 16], "gold");
+      L1rms = createGraph(document.getElementById("L1rms"), "Strom L1 RMS", 100, 128, 0, 100, false, "yellow");
+      L2rms = createGraph(document.getElementById("L2rms"), "Strom L2 RMS", 100, 128, 0, 100, false, "yellow");
+      L3rms = createGraph(document.getElementById("L3rms"), "Strom L3 RMS", 100, 128, 0, 100, false, "yellow");
+      
+      L1max = createGraph(document.getElementById("L1max"), "Strom L1 MAX", 100, 128, 0, 150, false, "magenta");
+      L2max = createGraph(document.getElementById("L2max"), "Strom L2 MAX", 100, 128, 0, 150, false, "magenta");
+      L3max = createGraph(document.getElementById("L3max"), "Strom L3 MAX", 100, 128, 0, 150, false, "magenta");
+      
+      heap = createGraph(document.getElementById("heap"), "Current Heap", 100, 125, 0, 300000, true, "orange");
+      freeSpace = createGraph(document.getElementById("freeSpace"), "free space", 100, 128, 0, 1500000, true, "green");
+      
       run();
     }
   </script>
@@ -90,8 +126,32 @@
     <input type="button" id="start-button" value="Start"/>
     <input type="button" id="stop-button" value="Stop"/>
   </div>
-  <div id="heap"></div>
-  <div id="analog"></div>
-  <div id="digital"></div>
+  <div id="factor-block" style="display: block; border: 1px solid rgb(68, 68, 68); padding: 5px; margin: 5px; width: 362px; background-color: rgb(238, 238, 238);">
+    <label>Faktor:</label>
+    <input type="number" id="factor"/>
+    <a href="http://192.168.4.1:81/getCSVData">Lade CSV-Daten</a>
+  </div>
+  <table>
+   <tr>
+    <th>L1</th>
+    <th>L2</th>
+    <th>L3</th>
+   </tr>
+   <tr>
+   	<td><div id="L1rms"></div></td>
+   	<td><div id="L2rms"></div></td>
+   	<td><div id="L3rms"></div></td>
+   	</tr>
+   	<tr>
+   	<td><div id="L1max"></div></td>
+   	<td><div id="L2max"></div></td>
+   	<td><div id="L3max"></div></td>
+   	</tr>
+   	</table>
+   
+  <a>System:</a>
+  <div id="system" style="display: block; border: 1px solid rgb(68, 68, 68); padding: 5px; margin: 5px; width: 384px; background-color: rgb(238, 238, 238);">
+  	<div id="heap"></div>  <div id="freeSpace"></div>
+  </div>
 </body>
 </html>
