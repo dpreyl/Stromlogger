@@ -30,6 +30,8 @@ void Ui::setup() {
 	MDNS.addService("http", "tcp", 80);
 
 	Ui::setupWebpages();
+
+	FSBrowser::setup(81);
 }
 
 void Ui::setupWebpages() {
@@ -87,7 +89,7 @@ void Ui::sendCSVData(AsyncWebServerRequest *request){
 	  //index equals the amount of bytes that have been already sent
 	  //You will be asked for more data until 0 is returned
 	  //Keep in mind that you can not delay or yield waiting for more data!
-	  return cSVReader.read(buffer, maxLen);
+	  return cSVReader.readBytes(buffer, maxLen);
 	});
 	response->addHeader("Server","ESP Async Web Server");
 	String filename = String((uint32_t)ESP.getEfuseMac(), HEX) + "_" + String(stSeqNo) + "-" + String(endSeqNo) + ".csv";
@@ -159,32 +161,60 @@ void Ui::parseSeqDataCollection(JsonObject jsonBuffer, MyDatalogger::DataCollect
 	jsonBuffer["seqNo"] = data->seqNo;
 }
 
-CSVReader::CSVReader(uint32_t stSeqNo, uint32_t endSeqNo) : stSeqNo(stSeqNo), endSeqNo(endSeqNo), curSeqNo(stSeqNo) {
+CSVReader::CSVReader(uint32_t stSeqNo, uint32_t endSeqNo, bool chunked) : stSeqNo(stSeqNo), endSeqNo(endSeqNo), curSeqNo(stSeqNo), _chunked(chunked) {
+	uint32_t curSeqNo = myDatalogger.getCurrentSequenceNo();
+	uint32_t minSeqNo = myDatalogger.getMinimumSequenceNo();
+	Serial.println("Min seq no: "+String(minSeqNo)+" cur seq no: "+String(curSeqNo));
+	if(this->endSeqNo == 0 || this->endSeqNo > curSeqNo){
+		this->endSeqNo = curSeqNo;
+	}
+	if(this->stSeqNo < minSeqNo || this->stSeqNo > this->endSeqNo){
+		this->stSeqNo = minSeqNo;
+	}
+	this->curSeqNo = this->stSeqNo;
+	buf = (uint8_t *)malloc(1360);
 }
 
-size_t CSVReader::read(uint8_t *buffer, size_t maxLen) {
+size_t CSVReader::readBytes(uint8_t *buffer, size_t maxLen) {
 	size_t len = 0;
+	MyDatalogger::DataCollection seq;
+
 	while(true){
 		if(this->curSeqNo > this->endSeqNo){
-			return 0;
+			//Serial.println("Succesfully read "+String(len)+" Bytes");
+			//Serial.write(buf, len);
+			free(buf);
+			buf = NULL;
+			if(_chunked){
+				return sprintf((char*) buffer, "%x\r\n\r\n", 0);
+			}
+			return len;
 		}
 		Serial.print("Read seqNo: ");
 		Serial.println(this->curSeqNo);
-		MyDatalogger::DataCollection seq = MyDatalogger::getSequence(this->curSeqNo);
-		Serial.print("Seq 2");
+		seq = MyDatalogger::getSequence(this->curSeqNo);
+		//Serial.print("Seq 2");
 		if(seq.seqNo == this->curSeqNo){
-			len += CSVReader::parseSeqDataCollection((char*) buffer, &seq);
+			len += CSVReader::parseSeqDataCollection((char*) buf+len, &seq);
 		}
-		Serial.print("Seq 3");
-		vTaskDelay(10 / portTICK_RATE_MS);
-		esp_task_wdt_reset();
-		Serial.print("Seq 4");
+		//Serial.print("Seq 3");
+		//vTaskDelay(10 / portTICK_RATE_MS);
+		//esp_task_wdt_reset();
+		//Serial.print("Seq 4");
 		++this->curSeqNo;
+		//Serial.println("Aktuelle len: "+String(len)+" maxLen: "+String(maxLen));
 		if(len > 0){
-			Serial.print("Seq 41");
+			//Serial.println("Succesfully read "+String(len)+" Bytes");
+			//Serial.write(buf, len);
+			if(_chunked){
+				len = sprintf((char*) buffer, "%x\r\n%.*s\r\n", len, len, buf);
+			} else {
+				len = sprintf((char*) buffer, "%.*s", len, buf);
+			}
+			//Serial.print("Seq 41");
 			return len;
 		}
-		Serial.print("Seq 42");
+		//Serial.print("Seq 42");
 	}
 }
 size_t CSVReader::parseSeqDataCollection(char *buffer, MyDatalogger::DataCollection *data){
@@ -203,3 +233,23 @@ size_t CSVReader::parseSensorResultData(char *buffer, INA3221::ResultData *data,
 	len += sprintf(buffer+len, "\r\n");
 	return len;
 }
+
+String CSVReader::name(){
+	return String((uint32_t)ESP.getEfuseMac(), HEX) + "_" + String(stSeqNo) + "-" + String(endSeqNo) + ".csv";
+}
+
+int CSVReader::available(){
+	if(this->curSeqNo > this->endSeqNo) {
+		return 0;
+	} else {
+		return 1360;
+	}
+}
+
+CSVReader::~CSVReader() {
+	if(buf != NULL){
+		free(buf);
+		buf = NULL;
+	}
+}
+

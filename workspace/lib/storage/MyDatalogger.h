@@ -21,11 +21,15 @@ public:
 			};
 	static DataCollection getSequence(uint32_t seqNo);
 	uint32_t getCurrentSequenceNo();
+	uint32_t getMinimumSequenceNo();
 	static bool deleteFile(uint32_t fileNo);
+	void removeOldestLog();
 private:
-	uint32_t findSequenceNo();
+	void findSequenceNo();
 	static void dataLoggerTask(void * param);
+	static void houskeepingTask(void * param);
 	uint32_t seqNo=0;
+	uint32_t minSeqNo = UINT32_MAX;
 	static void printDataCollection(DataCollection *dataCollection);
 	static void writeDataCollection(DataCollection *dataCollection);
 	DataCollection tmpDataCollection;

@@ -18,6 +18,9 @@ public:
     static BaseType_t takeSemaphore(unsigned int timeout);
     static void giveSemaphore();
     bool exists(const char* path);
+    size_t freeSpace();
+    size_t totalBytes();
+    size_t usedBytes();
 private:
     static SemaphoreHandle_t fsMutex;
 };

@@ -50,6 +50,18 @@ bool MyFS::remove(const char* path){
 	return LittleFS.remove(path);
 }
 
+size_t MyFS::freeSpace(){
+	return totalBytes() - usedBytes();
+}
+
+size_t MyFS::totalBytes(){
+	return LittleFS.totalBytes();
+}
+
+size_t MyFS::usedBytes(){
+	return LittleFS.usedBytes();
+}
+
 void MyFS::mkdir(const char* path){
 	LittleFS.mkdir(path);
 }

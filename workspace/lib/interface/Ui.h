@@ -8,6 +8,8 @@
 #ifndef LIB_INTERFACE_UI_H_
 #define LIB_INTERFACE_UI_H_
 
+#include <FSBrowser.h>
+
 #include <WiFi.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
@@ -30,6 +32,7 @@ private:
 	static AsyncWebServer server;
 	const char* ssid = "ZS_Stromlogger";
 	const char* password = "geheimnis";
+
 	void setupWebpages();
 	static void sendSensorValue(AsyncWebServerRequest *request);
 	static void sendSequence(AsyncWebServerRequest *request);
@@ -39,14 +42,23 @@ private:
 	static void parseSeqDataCollection(JsonObject  jsonBuffer, MyDatalogger::DataCollection *data);
 };
 
-class CSVReader{
+class CSVReader: public Stream{
 public:
-	CSVReader(uint32_t stSeqNo, uint32_t endSeqNo);
-	size_t read(uint8_t *buffer, size_t maxLen);
+	CSVReader(uint32_t stSeqNo, uint32_t endSeqNo, bool chunked=false);
+	~CSVReader();
+	size_t readBytes(uint8_t *buffer, size_t maxLen);
+	size_t size(){return CONTENT_LENGTH_UNKNOWN;};
+	String name();
+	int available();
+	int read(){return 0;};
+	int peek(){return 0;};
+	size_t write(uint8_t){return 0;};
 private:
 	uint32_t stSeqNo;
 	uint32_t endSeqNo;
 	uint32_t curSeqNo;
+	bool _chunked = false;
+	uint8_t * buf;
 
 	static size_t parseSeqDataCollection(char *buffer, MyDatalogger::DataCollection *data);
 	static size_t parseSensorResultData(char *buffer, INA3221::ResultData *data, uint32_t seqNo);
